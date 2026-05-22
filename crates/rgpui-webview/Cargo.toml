@@ -5,6 +5,7 @@ edition.workspace = true
 publish.workspace = true
 description = "WebView 集成"
 license.workspace = true
+repository = "https://github.com/launcher-rs/rgpui-component.git"
 
 [features]
 inspector = ["wry/devtools"]

@@ -5,6 +5,7 @@ edition.workspace = true
 publish.workspace = true
 description = "组件库资源文件"
 license.workspace = true
+repository = "https://github.com/launcher-rs/rgpui-component.git"
 
 [lib]
 doctest = false

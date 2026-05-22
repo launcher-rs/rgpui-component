@@ -17,6 +17,9 @@ members = [
     "crates/rgpui-component/examples/system_monitor",
     "crates/rgpui-component/examples/tooltip_top_edge",
     "crates/rgpui-component/examples/window_title",
+
+    "crates/rgpui-editor/examples/editor",
+    "crates/rgpui-editor/examples/lsp",
 ]
 
 [workspace.package]
@@ -69,6 +72,9 @@ smol = "2.0"
 reqwest = { version = "0.13", features = ["json","charset","http2","multipart","socks","stream"] }
 
 lsp-types = { version = "0.97.0", features = ["proposed"] }
+
+# 日期时间处理
+chrono = { version = "0.4", features = ["serde"] }
 
 [workspace.lints.rust]
 unexpected_cfgs = { level = "allow" }
