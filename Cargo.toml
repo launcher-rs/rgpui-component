@@ -29,15 +29,15 @@ license = "Apache-2.0"
 
 [workspace.dependencies]
 
-rgpui-component = { path = "crates/rgpui-component" }
 rgpui-component-macros = { path = "crates/rgpui-component-macros" }
+rgpui-component = { path = "crates/rgpui-component" }
 rgpui-component-assets = { path = "crates/rgpui-component-assets" }
 rgpui-webwiew = { path = "crates/rgpui-webview" }
 rgpui-editor = { path = "crates/rgpui-editor" }
 
-rgpui = "0.1"
-rgpui-macros = "0.1"
-rgpui-platform = "0.1"
+rgpui = ">=0.1, <1.0"
+rgpui-macros = ">=0.1, <1.0"
+rgpui-platform = ">=0.1, <1.0"
 
 # 错误处理库
 anyhow = "1.0.86"
