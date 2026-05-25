@@ -5727,7 +5727,7 @@ dependencies = [
  "rayon",
  "regex",
  "resvg",
- "rgpui-macros 0.1.0",
+ "rgpui-macros",
  "rust-embed",
  "rustc-hash 2.1.2",
  "schemars",
@@ -5767,7 +5767,7 @@ dependencies = [
 
 [[package]]
 name = "rgpui-component"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "aho-corasick",
  "anyhow",
@@ -5789,7 +5789,7 @@ dependencies = [
  "regex",
  "rgpui",
  "rgpui-component-macros",
- "rgpui-macros 0.2.0",
+ "rgpui-macros",
  "ropey",
  "rust-i18n",
  "rust_decimal",
@@ -5806,7 +5806,7 @@ dependencies = [
 
 [[package]]
 name = "rgpui-component-assets"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "anyhow",
  "log",
@@ -5819,7 +5819,7 @@ dependencies = [
 
 [[package]]
 name = "rgpui-component-macros"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -5828,7 +5828,7 @@ dependencies = [
 
 [[package]]
 name = "rgpui-editor"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "aho-corasick",
  "anyhow",
@@ -5968,18 +5968,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "rgpui-macros"
-version = "0.2.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "7edd8590cdaea06bd2a7e5628c822f81cece9af9c67cec2b7ee7fc1482e3d51e"
-dependencies = [
- "heck 0.5.0",
- "proc-macro2",
- "quote",
- "syn 2.0.117",
-]
-
-[[package]]
 name = "rgpui-platform"
 version = "0.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -6019,7 +6007,7 @@ dependencies = [
 
 [[package]]
 name = "rgpui-webview"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "anyhow",
  "gtk",
