@@ -3,7 +3,7 @@ use rgpui::{App, actions};
 pub mod highlighter;
 pub mod input;
 
-pub use input::{Input as Editor, InputState as EditorState, Rope, RopeExt, RopeLines};
+pub use input::{Input as Editor, InputState as EditorState,InputEvent as EditorEvent, Rope, RopeExt, RopeLines};
 
 pub(crate) mod actions {
     pub use rgpui_component::actions::*;
