@@ -29,11 +29,11 @@ license = "Apache-2.0"
 
 [workspace.dependencies]
 
-rgpui-component-macros = { path = "crates/rgpui-component-macros" }
-rgpui-component = { path = "crates/rgpui-component" }
-rgpui-component-assets = { path = "crates/rgpui-component-assets" }
-rgpui-webwiew = { path = "crates/rgpui-webview" }
-rgpui-editor = { path = "crates/rgpui-editor" }
+rgpui-component-macros = { path = "crates/rgpui-component-macros",version = "0.1.1" }
+rgpui-component = { path = "crates/rgpui-component" ,version = "0.1.1"}
+rgpui-component-assets = { path = "crates/rgpui-component-assets",version = "0.1.1" }
+rgpui-webwiew = { path = "crates/rgpui-webview",version = "0.1.1" }
+rgpui-editor = { path = "crates/rgpui-editor",version = "0.1.1" }
 
 rgpui = ">=0.1, <1.0"
 rgpui-macros = ">=0.1, <1.0"
