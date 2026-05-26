@@ -237,7 +237,7 @@ pub trait RopeExt {
     ///
     /// ```
     /// use rgpui_component::{Rope, RopeExt};
-    /// use sum_tree::Bias;
+    /// use rgpui::sum_tree::Bias;
     ///
     /// let rope = Rope::from("Hello 中文🎉 test\nRope");
     /// assert_eq!(rope.clip_offset(5, Bias::Left), 5);
