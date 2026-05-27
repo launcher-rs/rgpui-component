@@ -14,6 +14,7 @@ use super::{
 use crate::Size;
 use crate::actions::{SelectDown, SelectLeft, SelectRight, SelectUp};
 use crate::input::blink_cursor::CURSOR_WIDTH;
+use crate::scroll::AutoScroll;
 use crate::input::movement::MoveDirection;
 use crate::input::{
     Position, RopeExt as _, Selection,
@@ -335,6 +336,8 @@ pub struct InputState {
     pub(super) editor_scrollbar_snapshot: Cell<Option<EditorScrollbarSnapshot>>,
     pub(super) text_align: TextAlign,
 
+    pub(super) auto_scroll: AutoScroll,
+
     /// The mask pattern for formatting the input text
     pub(crate) mask_pattern: MaskPattern,
     pub(super) placeholder: SharedString,
@@ -424,6 +427,7 @@ impl InputState {
             clean_on_escape: false,
             soft_wrap: true,
             show_whitespaces: false,
+            auto_scroll: AutoScroll::default(),
             loading: false,
             pattern: None,
             validate: None,
@@ -1254,6 +1258,7 @@ impl InputState {
         }
         self.selecting = false;
         self.selected_word_range = None;
+        self.auto_scroll.stop();
     }
 
     pub(super) fn on_mouse_move(
@@ -1788,8 +1793,37 @@ impl InputState {
             return;
         }
 
+        self.auto_scroll.last_drag_position = Some(event.position);
         let offset = self.index_for_mouse_position(event.position);
         self.select_to(offset, cx);
+
+        if !self.mode.is_single_line() {
+            // Expand input_bounds by the CSS padding so the bounds reflect the full
+            // visible element. Without this, mouse positions in the padding area
+            // (visually inside the input) would appear outside bounds and trigger max speed.
+            let pad = self.editor_scrollbar_paddings.get();
+            let scroll_bounds = rgpui::Bounds::new(
+                point(
+                    self.input_bounds.origin.x - pad.left,
+                    self.input_bounds.origin.y - pad.top,
+                ),
+                rgpui::size(
+                    self.input_bounds.size.width + pad.left + pad.right,
+                    self.input_bounds.size.height + pad.top + pad.bottom,
+                ),
+            );
+            let delta = AutoScroll::compute_delta(event.position.y, scroll_bounds);
+            // Input's ScrollHandle uses negative-y-is-down; negate the positive-towards-bottom delta.
+            let scroll_delta = delta.map(|d| -d);
+            self.auto_scroll.set(scroll_delta, cx, |delta, state, cx| {
+                let current = state.scroll_handle.offset();
+                state.update_scroll_offset(Some(point(current.x, current.y + delta)), cx);
+                if let Some(pos) = state.auto_scroll.last_drag_position {
+                    let offset = state.index_for_mouse_position(pos);
+                    state.select_to(offset, cx);
+                }
+            });
+        }
     }
 
     fn is_valid_input(&self, new_text: &str, cx: &mut Context<Self>) -> bool {
